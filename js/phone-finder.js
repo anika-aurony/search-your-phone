@@ -22,6 +22,7 @@ const displaySearchResult = phones => {
             <div class="card-body">
             <h5 class="card-title">${phone.phone_name}</h5>
             <h4>${phone.brand}</h4>
+            <button onclick="showDetail(${phone.slug})">Explore More Details</button>
 
          <p class="card-text d-none">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
         </div>
@@ -32,6 +33,9 @@ const displaySearchResult = phones => {
 
 }
 
+const showDetail = phoneId =>{
+    
+}
 
 function displayData(items){
     // console.log(items);
