@@ -11,14 +11,22 @@
 <body>
     <header>
         <h1 class="text-center my-3">Find My Phone</h1>
-
-        <div class="input-group mb-3 mx-1">
-            <input type="text" class="form-control" placeholder="Search your phone" aria-label="Recipient's username" aria-describedby="basic-addon2">
-            <span class="input-group-text" id="basic-addon2">Search</span>
+        <!-- Search Area -->
+        <div class="input-group mb-3 w-50 mx-auto">
+            <input id="search-field" type="text" class="form-control" placeholder="Search your phone" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <button onclick="searchPhone()" class="btn btn-outline-secondary" type="button" id="button-search">Search</button>
           </div>
 
     </header>
-    <main>
+    <main class="">
+        <!-- Search Result -->
+        <div id="search-result" class=" row row-cols-1 row-cols-md-4 p-5 g-5">
+            
+            <!-- <div class="col">
+            
+            </div> -->
+          </div>
+
 
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
