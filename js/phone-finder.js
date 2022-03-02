@@ -22,8 +22,7 @@ const displaySearchResult = phones => {
             <div class="card-body">
             <h5 class="card-title">${phone.phone_name}</h5>
             <h4>${phone.brand}</h4>
-            const id = ${phone.slug}
-            <button onclick="showDetail('${phone.slug}')">Explore More Details</button>
+            <button onclick="showDetail('${phone.slug}')" class="buttonColor p-2 ">Explore More Details</button>
 
          <p class="card-text d-none">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
         </div>
@@ -44,18 +43,47 @@ const showDetail = phoneId =>{
 }
 
 const displayPhoneDetail = phone =>{
-    console.log(phone.image)
+    console.log(phone.mainFeatures.sensors)
+    // const items = phone.mainFeatures.sensors;
+  
     const phoneDetail = document.getElementById('phone-details');
     const div = document.createElement('div')
     div.classList.add('card');
     div.innerHTML= `
-    <div class="card" style="width: 18rem;">
+    <div class="p-2 ">
     <img src="${phone.image}" class="card-img-top" alt="...">
     <div class="card-body">
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <h4>${phone.name}</h4>
+      <p class="card-text">Release Date: ${phone.releaseDate}</p>
     </div>
   </div>
+
+  <div class="p-3">
+    <h4 >Main Features</h4>
+    <p><ul>
+    <li>Storage: ${phone.mainFeatures.storage}</li>
+    <li>Display Size: ${phone.mainFeatures.displaySet}</li>
+    <li>Chip Set: ${phone.mainFeatures.chipSet}</li>
+    <li>Memory: ${phone.mainFeatures.memory} </li>
+    </ul></p>
+  </div>
+
+  <div class="p-3">
+  <h4>Sensors:</h4>
+  <p>${phone.mainFeatures.sensors}</p>
+  </div>
     
+  <div class="p-3">
+  <h4>Others</h4>
+  <p><ul>
+  <li>WLAN: ${phone.others.WLAN}</li>
+  <li>Bluetooth: ${phone.others.Bluetooth}</li>
+  <li>GPS: ${phone.others.GPS}</li>
+  <li>NFC: ${phone.others.NFC} </li>
+  <li>Radio: ${phone.others.Radio} </li>
+  <li>USB: ${phone.others.USB} </li>
+  </ul></p>
+  </div>
     `
     phoneDetail.appendChild(div);
 
