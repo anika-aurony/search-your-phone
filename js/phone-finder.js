@@ -11,7 +11,7 @@ const searchPhone = () =>{
 }
 
 const displaySearchResult = phones => {
-    console.log(phones)
+    // console.log(phones)
     const searchResult = document.getElementById('search-result');
     for(const phone of phones){
         const div = document.createElement('div');
@@ -22,7 +22,8 @@ const displaySearchResult = phones => {
             <div class="card-body">
             <h5 class="card-title">${phone.phone_name}</h5>
             <h4>${phone.brand}</h4>
-            <button onclick="showDetail(${phone.slug})">Explore More Details</button>
+            const id = ${phone.slug}
+            <button onclick="showDetail('${phone.slug}')">Explore More Details</button>
 
          <p class="card-text d-none">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
         </div>
@@ -34,7 +35,30 @@ const displaySearchResult = phones => {
 }
 
 const showDetail = phoneId =>{
+    console.log(phoneId)
+    const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`
+    fetch(url)
+    .then(response => response.json())
+    .then(data=>displayPhoneDetail(data.data))
     
+}
+
+const displayPhoneDetail = phone =>{
+    console.log(phone.image)
+    const phoneDetail = document.getElementById('phone-details');
+    const div = document.createElement('div')
+    div.classList.add('card');
+    div.innerHTML= `
+    <div class="card" style="width: 18rem;">
+    <img src="${phone.image}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div>
+  </div>
+    
+    `
+    phoneDetail.appendChild(div);
+
 }
 
 function displayData(items){
