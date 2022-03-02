@@ -1,4 +1,5 @@
 document.getElementById('noResult').style.display = 'none';
+//Search Phone
 const searchPhone = () =>{
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
@@ -8,22 +9,31 @@ const searchPhone = () =>{
 
     // Load Data
     const url =`https://openapi.programming-hero.com/api/phones?search=${searchText}`
-   
     fetch(url)
     .then(response => response.json())
     .then(data => displaySearchResult(data.data) )  
 }
 
-const displaySearchResult = phones => {
-    // console.log(phones)
+//Display Result
+const displaySearchResult = items => {
+
+    //Display first 20 items
+    const phones = items.slice(0,20);
+
+    //Clear Data
     const searchResult = document.getElementById('search-result');
     searchResult.textContent = '';
     const phoneDetail = document.getElementById('phone-details');
     phoneDetail.textContent = '';
+
+
+    // Message if No Result Found
     if(phones.length == 0){
         const noResult = document.getElementById('noResult');
         noResult.style.display = 'block'
     }
+    
+    //Display Search Result
     for(const phone of phones){
         noResult.style.display = 'none'
         const div = document.createElement('div');
@@ -34,19 +44,20 @@ const displaySearchResult = phones => {
             <div class="card-body">
             <h5 class="card-title">${phone.phone_name}</h5>
             <h4>${phone.brand}</h4>
-            <button onclick="showDetail('${phone.slug}')" class="buttonColor p-2 ">Explore More Details</button>
+            <button onclick="showDetail('${phone.slug}')" class="buttonColor p-2 ">Show Details</button>
 
          <p class="card-text d-none">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
         </div>
       </div>
         `
-        searchResult.appendChild(div);
+        searchResult.appendChild(div);        
     }
 
 }
 
+// get details when click to show more button
 const showDetail = phoneId =>{
-    console.log(phoneId)
+    
     const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`
     fetch(url)
     .then(response => response.json())
@@ -54,16 +65,17 @@ const showDetail = phoneId =>{
     
 }
 
+//Display details
 const displayPhoneDetail = phone =>{
-    // console.log(phone.mainFeatures.sensors)
-    // const items = phone.mainFeatures.sensors;
-  
+
     const phoneDetail = document.getElementById('phone-details');
     phoneDetail.textContent = '';
+
     const div = document.createElement('div')
     div.classList.add('card');
+
     div.innerHTML= `
-    <div class="p-2 ">
+    <div class="p-3 ">
     <img src="${phone.image}" class="card-img-top" alt="...">
     <div class="card-body">
         <h4>${phone.name}</h4>
@@ -99,20 +111,5 @@ const displayPhoneDetail = phone =>{
   </div>
     `
     phoneDetail.appendChild(div);
-
-}
-
-function displayData(items){
-    // console.log(items);
-    for (const item of items) {
-        // console.log(item);
-        // console.log(item.brand);
-        // console.log(item.phone_name);
-        // console.log(item.slug);
-        // console.log(item.image);
-
-        
-    }
-
 }
 
