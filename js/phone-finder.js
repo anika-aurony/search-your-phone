@@ -1,8 +1,12 @@
+document.getElementById('noResult').style.display = 'none';
 const searchPhone = () =>{
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
-    // console.log(searchText);
+   
+    // Clear Data
     searchField.value = '';
+
+    // Load Data
     const url =`https://openapi.programming-hero.com/api/phones?search=${searchText}`
    
     fetch(url)
@@ -13,7 +17,15 @@ const searchPhone = () =>{
 const displaySearchResult = phones => {
     // console.log(phones)
     const searchResult = document.getElementById('search-result');
+    searchResult.textContent = '';
+    const phoneDetail = document.getElementById('phone-details');
+    phoneDetail.textContent = '';
+    if(phones.length == 0){
+        const noResult = document.getElementById('noResult');
+        noResult.style.display = 'block'
+    }
     for(const phone of phones){
+        noResult.style.display = 'none'
         const div = document.createElement('div');
         div.classList.add('col');
         div.innerHTML =  `
@@ -43,10 +55,11 @@ const showDetail = phoneId =>{
 }
 
 const displayPhoneDetail = phone =>{
-    console.log(phone.mainFeatures.sensors)
+    // console.log(phone.mainFeatures.sensors)
     // const items = phone.mainFeatures.sensors;
   
     const phoneDetail = document.getElementById('phone-details');
+    phoneDetail.textContent = '';
     const div = document.createElement('div')
     div.classList.add('card');
     div.innerHTML= `
