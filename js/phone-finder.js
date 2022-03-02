@@ -67,7 +67,7 @@ const displayPhoneDetail = phone =>{
     <img src="${phone.image}" class="card-img-top" alt="...">
     <div class="card-body">
         <h4>${phone.name}</h4>
-      <p class="card-text">Release Date: ${phone.releaseDate}</p>
+      <p class="card-text">Release Date: ${phone.releaseDate ? phone.releaseDate : 'No Release Date Found' }</p>
     </div>
   </div>
 
